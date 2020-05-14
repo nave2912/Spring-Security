@@ -17,7 +17,9 @@ public class springsecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.inMemoryAuthentication().withUser("admin").password("login").roles("admin").and().withUser("user")
-				.password("login").roles("user");
+				.password("login").roles("user").and().withUser("ceo").password("login").roles("ceo");
+
+	}
 
 	}
 
@@ -30,8 +32,12 @@ public class springsecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/user").hasRole("user").antMatchers("/admin").hasRole("admin").and()
-				.formLogin();
+		http.authorizeRequests()
+		.antMatchers("/user").hasAnyRole("user","ceo")
+		.antMatchers("/admin").hasAnyRole("admin","ceo")
+		.antMatchers("/ceo").hasRole("ceo")
+		.and()
+		.formLogin();
 	}
 }
 

@@ -14,4 +14,9 @@ public class SpringSecuirtyController {
 	public String testuser() {
 		return "UserLogin : Authentication success so please refer configuration class";
 	}
+	
+	@GetMapping("/ceo")
+	public String testForPermitAll() {
+		return "CEOLogin : Authentication success so please refer configuration class";
+	}
 }
