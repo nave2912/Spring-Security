@@ -21,8 +21,6 @@ public class springsecurityConfig extends WebSecurityConfigurerAdapter {
 
 	}
 
-	}
-
 	@Bean
 	public PasswordEncoder getPassword() {
 		return NoOpPasswordEncoder.getInstance();
